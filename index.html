@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorting Visualizer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorting Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
+  <div class="container">
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+      <h2>Sorting Visualizer</h2>
+
+      <!-- Algorithm Dropdown -->
+      <select id="selectAlgorithm" class="select-algorithm">
+        <option value="bubbleSort" selected>Bubble Sort</option>
+        <option value="insertionSort">Insertion Sort</option>
+        <option value="selectionSort">Selection Sort</option>
+        <option value="quickSort">Quick Sort</option>
+      </select>
+
+      <!-- Generate Section -->
+      <div class="generate-new">
+        <label>Array Size:</label>
+        <input type="number" id="numbersBars" min="1" max="200" value="12" />
+        <button id="generateBtn">Generate</button>
+      </div>
+
+      <!-- Solve Button -->
+      <button id="solveBtn">Solve</button>
+
+      <!-- 🌙 Dark Mode Toggle -->
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider round"></span>
+        </label>
+        <p>Dark Mode</p>
+      </div>
+    </div>
+
+    <!-- Stage for Bars -->
+    <div class="stage" id="stage"></div>
+  </div>
 </body>
 </html>

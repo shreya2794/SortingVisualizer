@@ -1,0 +1,168 @@
+/* ✨ Light Mode: Elegant Lavender Tones */
+:root {
+  --bg-color: #fdfaff;
+  --text-color: #4b3869;
+  --stage-bg: #D7BDE2;         /* Orchid Mist */
+  --bar-color: #9F86C0;        /* Purple Haze */
+  --sidebar-bg: #CBAACB;       /* Soft Lilac */
+  --button-bg: #A29BFE;        /* Periwinkle Glow */
+  --button-hover: #8e7dff;
+  --dropdown-bg: #f3e7fa;      /* very light lilac */
+}
+
+/* 🌙 Dark Mode: Deep Lavenders */
+body.dark {
+  --bg-color: #1c1225;
+  --text-color: #f3eaff;
+  --stage-bg: #3d2b50;
+  --bar-color: #A29BFE;
+  --sidebar-bg: #2a1c38;
+  --button-bg: #9F86C0;
+  --button-hover: #b39ddb;
+  --dropdown-bg: #332244;
+}
+
+/* ✅ Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+}
+
+/* ✅ Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--sidebar-bg);
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(159, 134, 192, 0.3);
+}
+
+.sidebar h2 {
+  text-align: center;
+  color: var(--text-color);
+}
+
+/* ✅ Dropdown */
+.select-algorithm {
+  background: var(--dropdown-bg);
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+/* ✅ Generate + Buttons */
+.generate-new {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.generate-new input {
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+/* ✅ Stage */
+.stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 400px;
+  width: 700px;
+  background: var(--stage-bg);
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(190, 143, 230, 0.2);
+}
+
+/* ✅ Bars */
+.bar {
+  background: var(--bar-color);
+  width: 40px;
+  border-radius: 6px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Dark Mode Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #A29BFE;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}

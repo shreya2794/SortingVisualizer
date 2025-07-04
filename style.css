@@ -1,4 +1,4 @@
-/* ✨ Light Mode: Elegant Lavender Tones */
+/*  Light Mode: Elegant Lavender Tones */
 :root {
   --bg-color: #fdfaff;
   --text-color: #4b3869;
@@ -10,7 +10,7 @@
   --dropdown-bg: #f3e7fa;      /* very light lilac */
 }
 
-/* 🌙 Dark Mode: Deep Lavenders */
+/*  Dark Mode: Deep Lavenders */
 body.dark {
   --bg-color: #1c1225;
   --text-color: #f3eaff;
@@ -29,6 +29,7 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.4s ease, color 0.4s ease; /*day 2*/
 }
 
 .container {
@@ -120,36 +121,36 @@ button:hover {
 }
 
 /* ✅ Dark Mode Toggle */
-.theme-toggle {
+.theme-toggle { /* Arranges the toggle switch and text (🌙 Dark Mode) side-by-side */
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items:center;
+  gap: 10px; /* spacing between them */
 }
 
-.switch {
-  position: relative;
+.switch { /* swtich means the box of the slider */ 
+  position: relative; /* relative is needed so child elements (.slider) can be positioned absolutely */
   display: inline-block;
   width: 50px;
   height: 24px;
-}
+} 
 
-.switch input {
-  opacity: 0;
+.switch input { /* The actual checkbox is hidden — we style the .slider span instead. // This keeps it accessible but invisible. */
+  opacity: 0 ; /* if we do the width of the switch above as 0 and increase height and width and remove the opacity we can see the checkbox */
   width: 0;
   height: 0;
 }
 
-.slider {
+.slider { /* switch background */
   position: absolute;
-  inset: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 24px;
+  inset: 0; /* inset: 0 makes the slider fill its parent .switch */
+  background-color: #ccc; /* Gray background by default */
+  transition: 0.4s;  /* Smooth animation using transition. */
+  border-radius: 30px; /* Rounded edges like a pill */
 }
 
-.slider:before {
+.slider:before { /* white toggle ball */
   content: "";
-  position: absolute;
+  position: absolute;/* Positioned on the left by default. */
   height: 18px;
   width: 18px;
   left: 3px;
@@ -160,9 +161,9 @@ button:hover {
 }
 
 input:checked + .slider {
-  background-color: #A29BFE;
+  background-color: #A29BFE;/* When checkbox is ON (checked), the slider has this color */
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
-}
+  transform: translateX(26px); /* This moves the white circle to the right, creating the "slide" effect.*/
+}                              /* translateX means towards x axis */

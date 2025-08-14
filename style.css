@@ -1,16 +1,16 @@
-/*  Light Mode: Elegant Lavender Tones */
+/* Light Mode: Elegant Lavender Tones */
 :root {
   --bg-color: #fdfaff;
   --text-color: #4b3869;
-  --stage-bg: #D7BDE2;         /* Orchid Mist */
-  --bar-color: #9F86C0;        /* Purple Haze */
-  --sidebar-bg: #CBAACB;       /* Soft Lilac */
-  --button-bg: #A29BFE;        /* Periwinkle Glow */
+  --stage-bg: #D7BDE2;
+  --bar-color: #9F86C0;
+  --sidebar-bg: #CBAACB;
+  --button-bg: #A29BFE;
   --button-hover: #8e7dff;
-  --dropdown-bg: #f3e7fa;      /* very light lilac */
+  --dropdown-bg: #f3e7fa;
 }
 
-/*  Dark Mode: Deep Lavenders */
+/* Dark Mode */
 body.dark {
   --bg-color: #1c1225;
   --text-color: #f3eaff;
@@ -22,14 +22,17 @@ body.dark {
   --dropdown-bg: #332244;
 }
 
-/* ✅ Base Styles */
-body {
+/* Base */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
   background: var(--bg-color);
   color: var(--text-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background 0.4s ease, color 0.4s ease; /*day 2*/
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .container {
@@ -41,24 +44,29 @@ body {
   max-width: 1200px;
 }
 
-/* ✅ Sidebar */
+/* Sidebar */
 .sidebar {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: var(--sidebar-bg);
   padding: 20px;
   border-radius: 12px;
   width: 300px;
-  gap: 20px;
+  height: 450px;
+  gap: 15px;
   box-shadow: 0 4px 12px rgba(159, 134, 192, 0.3);
 }
 
-.sidebar h2 {
+/* Title */
+.sidebar-title {
   text-align: center;
-  color: var(--text-color);
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-/* ✅ Dropdown */
+/* Dropdown */
 .select-algorithm {
   background: var(--dropdown-bg);
   font-size: 18px;
@@ -68,21 +76,23 @@ body {
   color: var(--text-color);
 }
 
-/* ✅ Generate + Buttons */
-.generate-new {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.generate-new input {
-  padding: 6px;
+/* Input Label */
+.sidebar label {
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  margin-top: 5px;
 }
 
-button {
+/* Input */
+.sidebar input[type="number"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Buttons */
+.sidebar button {
   background: var(--button-bg);
   color: white;
   border: none;
@@ -91,79 +101,74 @@ button {
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
+  width: 100%;
 }
-
-button:hover {
+.sidebar button:hover {
   background: var(--button-hover);
 }
 
-/* ✅ Stage */
+/* Stage */
+.stage-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
 .stage {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  height: 400px;
-  width: 700px;
-  background: var(--stage-bg);
+  position: relative;
+  height: 450px;
+  background-color: var(--stage-bg);
   border-radius: 10px;
   padding: 10px;
-  position: relative;
-  box-shadow: 0 0 10px rgba(190, 143, 230, 0.2);
 }
-
-/* ✅ Bars */
 .bar {
-  background: var(--bar-color);
-  width: 40px;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--bar-color);
+  transition: left 0.3s ease, background-color 0.3s ease;
   border-radius: 6px;
-  margin: 0 5px;
-  transition: all 0.3s ease;
+}
+.bar.activate {
+  background-color: #65d84e;
 }
 
-/* ✅ Dark Mode Toggle */
-.theme-toggle { /* Arranges the toggle switch and text (🌙 Dark Mode) side-by-side */
+/* Toggle switch */
+.theme-toggle {
   display: flex;
-  align-items:center;
-  gap: 10px; /* spacing between them */
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
 }
-
-.switch { /* swtich means the box of the slider */ 
-  position: relative; /* relative is needed so child elements (.slider) can be positioned absolutely */
-  display: inline-block;
+.switch {
+  position: relative;
   width: 50px;
   height: 24px;
-} 
-
-.switch input { /* The actual checkbox is hidden — we style the .slider span instead. // This keeps it accessible but invisible. */
-  opacity: 0 ; /* if we do the width of the switch above as 0 and increase height and width and remove the opacity we can see the checkbox */
+}
+.switch input {
+  opacity: 0;
   width: 0;
   height: 0;
 }
-
-.slider { /* switch background */
+.slider {
   position: absolute;
-  inset: 0; /* inset: 0 makes the slider fill its parent .switch */
-  background-color: #ccc; /* Gray background by default */
-  transition: 0.4s;  /* Smooth animation using transition. */
-  border-radius: 30px; /* Rounded edges like a pill */
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 30px;
+  transition: 0.4s;
 }
-
-.slider:before { /* white toggle ball */
+.slider:before {
   content: "";
-  position: absolute;/* Positioned on the left by default. */
+  position: absolute;
   height: 18px;
   width: 18px;
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: 0.4s;
   border-radius: 50%;
+  transition: 0.4s;
 }
-
 input:checked + .slider {
-  background-color: #A29BFE;/* When checkbox is ON (checked), the slider has this color */
+  background-color: #A29BFE;
 }
-
 input:checked + .slider:before {
-  transform: translateX(26px); /* This moves the white circle to the right, creating the "slide" effect.*/
-}                              /* translateX means towards x axis */
+  transform: translateX(26px);
+}

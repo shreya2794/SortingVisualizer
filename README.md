@@ -1,5 +1,2 @@
 ﻿## SortingVisualizer
-### Day 1 : Created the basic file structure:
- - index.html 
- - style.css 
- - script.js 
+

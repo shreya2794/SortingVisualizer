@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding for the document -->
     <meta charset="UTF-8">
+
+    <!-- Makes the page responsive on different devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown on browser tab -->
     <title>Sorting Visualizer</title>
+
+    <!-- Link to external CSS file for styling -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Link to external JavaScript file, using ES6 module syntax and deferred execution -->
     <script src="script.js" type="module" defer></script>
 </head>
+
 <body>
+    <!-- Main container holding sidebar and visualization stage -->
     <div class="container">
+
+        <!-- Sidebar for controls -->
         <div class="sidebar">
-            
-            <!-- Title -->
+
+            <!-- Title of the visualizer -->
             <h2 class="sidebar-title">Sorting Visualizer</h2>
 
-            <!-- Algorithm selector -->
+            <!-- Dropdown to select sorting algorithm -->
             <select id="selectAlgorithm" class="select-algorithm">
                 <option value="bubbleSort" selected>Bubble Sort</option>
                 <option value="insertionSort">Insertion Sort</option>
@@ -22,30 +35,35 @@
                 <option value="quickSort">Quick Sort</option>
             </select>
 
-            <!-- Array size input -->
+            <!-- Input field to choose the number of bars in the array -->
             <label for="numbersBars">Array Size:</label>
             <input type="number" id="numbersBars" max="20" min="1" value="12">
 
-            <!-- Buttons -->
+            <!-- Button to generate a new random array -->
             <button id="generateBtn">Generate</button>
+
+            <!-- Button to start sorting the current array -->
             <button id="solveBtn">Solve</button>
 
-            <!-- Dark mode toggle -->
+            <!-- Dark mode toggle switch -->
             <div class="theme-toggle">
                 <label class="switch">
+                    <!-- Checkbox input for toggling theme -->
                     <input type="checkbox" id="themeSwitch">
                     <span class="slider"></span>
                 </label>
+                <!-- Label for the toggle -->
                 <span>🌙 Dark Mode</span>
             </div>
 
-        </div>
+        </div> <!-- End of sidebar -->
 
-        <!-- Stage -->
+        <!-- Stage wrapper holds the visualization area -->
         <div class="stage-wrapper">
+            <!-- Stage where array bars will be dynamically rendered by JS -->
             <div class="stage" id="stage"></div>
         </div>
-    </div>
+
+    </div> <!-- End of main container -->
 </body>
 </html>
-

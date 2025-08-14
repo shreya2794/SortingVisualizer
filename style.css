@@ -1,16 +1,33 @@
-/* Light Mode: Elegant Lavender Tones */
+/*  Light Mode: Elegant Lavender */
+
 :root {
+  /* Background color of the page */
   --bg-color: #fdfaff;
+
+  /* Default text color */
   --text-color: #4b3869;
+
+  /* Background color of the stage where bars appear */
   --stage-bg: #D7BDE2;
+
+  /* Color of the array bars */
   --bar-color: #9F86C0;
+
+  /* Sidebar background */
   --sidebar-bg: #CBAACB;
+
+  /* Buttons background color */
   --button-bg: #A29BFE;
+
+  /* Buttons hover effect color */
   --button-hover: #8e7dff;
+
+  /* Dropdown menu background */
   --dropdown-bg: #f3e7fa;
 }
 
-/* Dark Mode */
+/*  Dark Mode Variables          */
+
 body.dark {
   --bg-color: #1c1225;
   --text-color: #f3eaff;
@@ -22,43 +39,47 @@ body.dark {
   --dropdown-bg: #332244;
 }
 
-/* Base */
+/*  Base Reset & Global Styles   */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Makes width include padding and border */
 }
+
 body {
-  background: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background 0.4s ease, color 0.4s ease;
+  background: var(--bg-color); /* Page background color */
+  color: var(--text-color);    /* Default text color */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font stack */
+  transition: background 0.4s ease, color 0.4s ease; /* Smooth theme transitions */
 }
 
+/* Container holding sidebar + stage */
 .container {
-  margin: 60px auto;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  max-width: 1200px;
+  margin: 60px auto; /* Vertical spacing + center horizontally */
+  display: flex;     /* Layout children horizontally */
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Align items to top */
+  gap: 20px;         /* Space between sidebar and stage */
+  max-width: 1200px; /* Prevent container from being too wide */
 }
 
-/* Sidebar */
+/*  Sidebar Styling             */
+
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: flex;             /* Flex layout */
+  flex-direction: column;    /* Stack elements vertically */
+  justify-content: space-between; /* Distribute space between top & bottom */
   background: var(--sidebar-bg);
   padding: 20px;
   border-radius: 12px;
   width: 300px;
   height: 450px;
-  gap: 15px;
-  box-shadow: 0 4px 12px rgba(159, 134, 192, 0.3);
+  gap: 15px;                 /* Space between controls */
+  box-shadow: 0 4px 12px rgba(159, 134, 192, 0.3); /* Soft shadow */
 }
 
-/* Title */
+/* Sidebar Title */
 .sidebar-title {
   text-align: center;
   font-size: 22px;
@@ -66,7 +87,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* Dropdown */
+/* Dropdown Menu */
 .select-algorithm {
   background: var(--dropdown-bg);
   font-size: 18px;
@@ -76,22 +97,22 @@ body {
   color: var(--text-color);
 }
 
-/* Input Label */
+/* Label for input fields */
 .sidebar label {
   font-size: 16px;
   margin-top: 5px;
 }
 
-/* Input */
+/* Number input field for array size */
 .sidebar input[type="number"] {
   padding: 8px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 16px;
-  width: 100%;
+  width: 100%; /* Fill sidebar width */
 }
 
-/* Buttons */
+/* Buttons styling */
 .sidebar button {
   background: var(--button-bg);
   color: white;
@@ -100,61 +121,74 @@ body {
   font-size: 18px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease; /* Smooth hover effect */
   width: 100%;
 }
+
+/* Button hover effect */
 .sidebar button:hover {
   background: var(--button-hover);
 }
 
-/* Stage */
+/*  Stage (Visualizer) Styling   */
+
 .stage-wrapper {
-  overflow-x: auto;
+  overflow-x: auto; /* Allow horizontal scroll if bars exceed width */
   max-width: 100%;
   border-radius: 10px;
 }
+
 .stage {
-  position: relative;
+  position: relative; /* Needed for absolute positioning of bars */
   height: 450px;
   background-color: var(--stage-bg);
   border-radius: 10px;
   padding: 10px;
 }
+
+/* Individual bars */
 .bar {
-  position: absolute;
-  bottom: 0;
+  position: absolute; /* Positioned relative to stage */
+  bottom: 0;          /* Bars grow from bottom */
   background-color: var(--bar-color);
-  transition: left 0.3s ease, background-color 0.3s ease;
+  transition: left 0.3s ease, background-color 0.3s ease; /* Smooth movement & color change */
   border-radius: 6px;
 }
+
+/* Active bar highlight (during swaps) */
 .bar.activate {
   background-color: #65d84e;
 }
 
-/* Toggle switch */
+/*  Dark Mode Toggle Switch      */
+
 .theme-toggle {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: auto;
+  margin-top: auto; /* Push toggle to bottom of sidebar */
 }
+
 .switch {
   position: relative;
   width: 50px;
   height: 24px;
 }
+
 .switch input {
-  opacity: 0;
+  opacity: 0; /* Hide default checkbox */
   width: 0;
   height: 0;
 }
+
 .slider {
   position: absolute;
-  inset: 0;
+  inset: 0; /* Top, right, bottom, left = 0 */
   background-color: #ccc;
   border-radius: 30px;
-  transition: 0.4s;
+  transition: 0.4s; /* Smooth sliding animation */
 }
+
 .slider:before {
   content: "";
   position: absolute;
@@ -166,9 +200,12 @@ body {
   border-radius: 50%;
   transition: 0.4s;
 }
+
+/* Toggle switch checked state */
 input:checked + .slider {
   background-color: #A29BFE;
 }
+
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(26px); /* Move knob to right */
 }

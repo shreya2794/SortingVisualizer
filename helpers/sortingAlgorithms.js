@@ -1,157 +1,191 @@
-const Compare = { //Comparison constants to represent comparison results
-    LESS_THAN: -1,
-    BIGGER_THAN: 1
+// ======================================
+//  Comparison Constants
+// ======================================
+// Used to standardize comparison results across algorithms
+const Compare = { 
+    LESS_THAN: -1,  // Represents a < b
+    BIGGER_THAN: 1  // Represents a > b
 }
 
-const defaultCompare = (a, b) => {//Comparison constants to represent comparison results
-    if(a===b){// Returns 0 if a and b are equal
-        return 0;
+// ======================================
+//  Default Compare Function
+// ======================================
+// Compares two values and returns -1, 0, or 1
+const defaultCompare = (a, b) => {
+    if (a === b) { 
+        return 0; // a equals b
     }
-    return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN // Returns -1 if a is less than b and return 1 if a is greater than b
+    return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
 }
 
-let swaps = [] //Array to store the sequence of swaps
+// ======================================
+//  Swaps Array
+// ======================================
+// Stores the sequence of swaps for visualization purposes
+let swaps = [];
 
-//Partition function to partition the array around a pivot
+// ======================================
+//  Partition Function for QuickSort
+// ======================================
 const partition = (array, left, right, compareFn) => {
-    //Choose pivot as the middle of the array
-    const pivot = array[Math.floor((right+left)/2)];
+    // Choose pivot element (middle of the current subarray)
+    const pivot = array[Math.floor((right + left) / 2)];
 
-    let i = left; //Left pointer
-    let j = right; //Right pointer
+    let i = left;  // Left pointer
+    let j = right; // Right pointer
 
-    //Partition the array
-    while(i <= j){
-        while(compareFn(array[i], pivot)===Compare.LESS_THAN){//Move left pointer until an element larger than pivot is found
+    // Partitioning loop
+    while (i <= j) {
+
+        // Move left pointer until an element >= pivot is found
+        while (compareFn(array[i], pivot) === Compare.LESS_THAN) {
             i++;
-        }    
-        while(compareFn(array[j], pivot)===Compare.BIGGER_THAN){//Move right pointer until an element smaller than pivot is found
+        }
+
+        // Move right pointer until an element <= pivot is found
+        while (compareFn(array[j], pivot) === Compare.BIGGER_THAN) {
             j--;
         }
-        if(i <= j){ //If left pointer is less than right pointer, swap elements 
+
+        // Swap elements if pointers haven't crossed
+        if (i <= j) {
             let temp = array[i];
             array[i] = array[j];
             array[j] = temp;
 
-            //Push the swap to the swaps array
-            swaps.push({firstPosition: i,lastPosition: j}) 
+            // Store the swap positions for animation
+            swaps.push({ firstPosition: i, lastPosition: j });
 
-            //Move the pointers towards each other
+            // Move pointers toward each other
             i++;
             j--;
         }
     }
-    return i; //Return the index where partioning ended
+
+    // Return the partition index
+    return i;
 }
 
-//Quicksort function to sort the array recursively
+// ======================================
+//  QuickSort Recursive Function
+// ======================================
 const quicksort = (array, left, right, compareFn) => {
-    let index
+    let index;
 
-    //If array has more than one element
-    if(array.length > 1){
-        //Partition the array around a pivot and get the index where partitioning ended
+    // Only sort if subarray has more than 1 element
+    if (array.length > 1) {
+        // Partition the array and get pivot index
         index = partition(array, left, right, compareFn);
 
-        //Recursively sort the two halves of the array
-        if(left < index - 1){
+        // Recursively sort left half
+        if (left < index - 1) {
             quicksort(array, left, index - 1, compareFn);
         }
-        if(index < right){
+
+        // Recursively sort right half
+        if (index < right) {
             quicksort(array, index, right, compareFn);
         }
     }
 
-    return array //Return the sorted array
+    return array; // Return sorted array (not strictly needed for visualization)
 }
 
+// ======================================
+//  SortingAlgorithms Class
+// ======================================
 class SortingAlgorithms {
-    
-    bubbleSort(array) { //(N-1) Iterations, putting ith largest element to its correct position in ith iteration
-        const swaps = [];//Array to store the sequence of swaps
-        for (let i = 0; i < array.length-1; i++) {
 
-            //bool swap = false;  //To check if any swap occurs in the current iteration
+    // ==============================
+    //  Bubble Sort
+    // ==============================
+    bubbleSort(array) {
+        const swaps = []; // Store swaps for visualization
 
-            //Last i elements are already sorted
+        // Outer loop: N-1 iterations
+        for (let i = 0; i < array.length - 1; i++) {
+            // Inner loop: compare adjacent elements
             for (let j = 0; j < array.length - i - 1; j++) {
-                //Checking if the current element is greater than the next element
                 if (array[j] > array[j + 1]) {
-                    //If the condition is true then swap the elements and storing the sequence
-                    //swap = true  //If swap occured
+                    // Swap if elements are in wrong order
                     let temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
 
-                    //Storing the sequence of swaps
+                    // Record the swap
                     swaps.push({ firstPosition: j, lastPosition: j + 1 });
                 }
-                
             }
-
-            //if(swap===false) //Then break the loop as no swap occured in the previous iteration (Already sorted)
-            
         }
 
-        return swaps;
+        return swaps; // Return sequence of swaps
     }
 
-    selectionSort(array){
-        const swaps = []; //Array to store the sequence of swaps
-        let min
-        //N-1 iteration for N elements
+    // ==============================
+    //  Selection Sort
+    // ==============================
+    selectionSort(array) {
+        const swaps = []; // Store swaps
+        let min;
+
+        // Outer loop: iterate through each element
         for (let i = 0; i < array.length - 1; i++) {
-            min = i;//Assume current element is minimum
+            min = i; // Assume current element is minimum
 
-            //Finding index of the minimum element in remaining unsorted array
-            for (let j = i+1; j < array.length; j++) {
-
-                //If a smaller element is found update the minimum index
-                if (array[j]<array[min]) {
+            // Find minimum element in the remaining unsorted array
+            for (let j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
                     min = j;
                 }
             }
 
-            //Swapping the minimum element with the fisrt element in unsorted portion 
-            let temp = array[min]
-            array[min] = array[i]
-            array[i] = temp
+            // Swap minimum element with current element
+            let temp = array[min];
+            array[min] = array[i];
+            array[i] = temp;
 
-            //Store the positions of elements that were swapped
+            // Record the swap for visualization
             swaps.push({ firstPosition: min, lastPosition: i });
         }
 
-        return swaps; //Return the sequence of swaps
+        return swaps;
     }
 
+    // ==============================
+    //  Quick Sort
+    // ==============================
     quickSort(array, compareFn = defaultCompare) {
-        swaps = [];
-        quicksort(array,0,array.length-1,compareFn);
-        return swaps;
+        swaps = []; // Reset swaps array
+        quicksort(array, 0, array.length - 1, compareFn);
+        return swaps; // Return sequence of swaps
     }
 
+    // ==============================
+    //  Insertion Sort
+    // ==============================
     insertionSort(array, compareFn = defaultCompare) {
-        let swaps = []; // Array to store the sequence of swaps
-        
+        const swaps = []; // Store swaps
+
         for (let i = 1; i < array.length; i++) {
-            let current = array[i]; //Store the current element to be inserted
-            let j = i - 1; //Start comparing the current element with previous element
-            
-            // Shift elements of array[0..i-1], that are greater than current,
-            // to one position ahead of their current position
+            const current = array[i]; // Current element to insert
+            let j = i - 1;
+
+            // Shift elements greater than current to the right
             while (j >= 0 && compareFn(array[j], current) === Compare.BIGGER_THAN) {
-                array[j + 1] = array[j]; //Shift the element to the right
-                swaps.push({ firstPosition: j, lastPosition: j + 1 }); //Store the swap
-                j--; //Move to the previous element 
+                array[j + 1] = array[j]; // Move element right
+                swaps.push({ firstPosition: j, lastPosition: j + 1 }); // Record swap
+                j--;
             }
-            array[j + 1] = current; // Place the current element in its correct position 
+
+            // Place current element in its correct position
+            array[j + 1] = current;
         }
-        
+
         return swaps;
     }
-
 }
 
-export {
-    SortingAlgorithms
-}
+// ======================================
+//  Export the class for external use
+// ======================================
+export { SortingAlgorithms }

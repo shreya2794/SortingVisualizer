@@ -48,7 +48,6 @@ Toggle 🌙 Dark Mode for a different theme.
 
 ---
 
-## 📸 Demo GIF
 
 ## 📌 Future Enhancements
 Add more sorting algorithms like Heap Sort, Radix Sort, etc.

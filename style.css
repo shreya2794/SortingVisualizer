@@ -52,15 +52,19 @@ body {
   color: var(--text-color);    /* Default text color */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font stack */
   transition: background 0.4s ease, color 0.4s ease; /* Smooth theme transitions */
-}
+}             /* whenever backgroud property is changed use this transition
+              /* change happens over 0.4sec
+              /* timing function that defines how the speed changes over time. ease → starts slow, speeds up, then slows down at the end.
+              /* color means: “whenever the text color changes, animate it too. So if text goes from black → white, it will smoothly transition in 0.4s.
+              
 
 /* Container holding sidebar + stage */
 .container {
-  margin: 60px auto; /* Vertical spacing + center horizontally */
+  margin: 130px auto; /* Vertical spacing + center horizontally */
   display: flex;     /* Layout children horizontally */
   justify-content: center; /* Center horizontally */
   align-items: flex-start; /* Align items to top */
-  gap: 20px;         /* Space between sidebar and stage */
+  gap: 15px;     /* Space between sidebar and stage */
   max-width: 1200px; /* Prevent container from being too wide */
 }
 
@@ -72,7 +76,7 @@ body {
   justify-content: space-between; /* Distribute space between top & bottom */
   background: var(--sidebar-bg);
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 10px;
   width: 300px;
   height: 450px;
   gap: 15px;                 /* Space between controls */
